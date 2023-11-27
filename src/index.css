@@ -1,10 +1,29 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
+    font-family: 'bangers', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: rgb(41, 46, 57); 
+  background-image:
+    /* Top Left: Dark to transparent */
+    radial-gradient(circle at top left, rgba(23, 27, 35, 1) 0%, transparent 60%),
+    /* Top Right: Orange to transparent */
+    radial-gradient(circle at top right, rgba(255, 135, 0, 1) -40%, transparent 60%),
+    /* Center: Blue, more spread */
+    radial-gradient(circle at center, rgba(0, 119, 182, 0.8) 40%, transparent 80%),
+    radial-gradient(circle at center left, rgb(248, 248, 248, 1) 0%, transparent 28%),
+    /* Bottom: Darker */
+    linear-gradient(to bottom, rgb(161, 173, 194) 0%, rgb(40, 46, 56) 10%, transparent 90%);
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-blend-mode:overlay;
 }
 
 code {

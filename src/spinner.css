@@ -1,0 +1,24 @@
+.align{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    color: white;
+    gap: 4vmin;
+}
+.spinner {
+    border: 5px solid rgba(255, 255, 255, 0.3); /* Light grey border */
+    border-top: 5px rgb(95, 95, 127); /* Blue top border */
+    border-radius: 50%;
+    width: 7vh;
+    height: 7vh;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }

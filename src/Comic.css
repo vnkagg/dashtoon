@@ -1,0 +1,52 @@
+.comic{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    gap: 4vmin;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute; */
+    cursor: pointer;
+}
+.comic > img{
+    width: 40vmin;
+    height: 56vmin;
+    object-fit: cover;
+    object-position: 100%, 50%;
+    user-select: none;
+    box-shadow: 0 0 25px black;
+    border: 1px solid black;
+}
+.mobileComic{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.comicMobileContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:10vmin;
+    margin: auto;
+}
+.comicMobileImage{
+    max-width: 90%;
+    max-height: 75%;
+    margin: auto;
+    object-fit: cover;
+    object-position: center;
+    border: 1px solid black;
+    box-shadow: 0 0 25px black;
+}
+.comicMobileImage > img {
+    width: 100%;
+}
+.comicMobileIndex{
+    display: flex;
+    justify-content: center;
+    gap: 10vmin;
+    font-size: 3em;
+    color: white;
+}

@@ -1,0 +1,68 @@
+.bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5vh;
+    height: 10vh;
+    width: 100vw;
+}
+.logo{
+    font-size: 44px;
+    font-weight: 800;
+    display: flex;
+    color: rgb(64, 117, 192);
+    margin-left: 4vw;
+    align-items: center;
+    height: 100%;
+    /* -webkit-text-stroke: 0.05px rgb(160, 160, 160); */
+    cursor: pointer;
+}
+@media screen and (max-width: 1029px){
+    .bar{
+        justify-content: center;
+        margin-top: 6vh;
+        height: 3vh;
+    }
+    .logo{
+        margin-left: 0;
+    }
+}
+.pages{
+    height: 100%;
+    width: 40%;
+    font-size: 2rem;
+    font-weight: 200;
+    color: rgb(187, 222, 255);
+    align-items: center;
+    display: flex;
+    gap: 1.5rem;
+    flex-direction: row;
+}
+.signup{
+    margin-right: 1em;
+    font-family: 'Londrina Solid', cursive;
+    cursor : pointer;   
+    background-color: rgb(64, 117, 192);
+    width: 5em;
+    height: 2em;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    border-radius: 45px;
+    color : white;
+    transition: all 0.2s ease;
+}
+.signup:hover{
+    color: rgb(64, 117, 192);
+    background-color: rgb(221, 239, 255);
+    transition: all 0.2s ease-in-out;
+}
+.page1{
+    /* margin-right: 1em; */
+    font-family: 'Londrina Solid', cursive;
+    cursor : pointer;
+}
+.page1:hover{
+    color: rgb(221, 239, 255);
+    transition: all 0.3s ease;
+}

@@ -1,0 +1,114 @@
+.intro{
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+    width: 60%;
+}
+.container1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: space-evenly;
+    width: 80%;
+    margin: auto;
+    height: 85vh;
+}
+.bottom{
+    /* height: 10vh; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* max-width: 50%; */
+}
+.getStarted{
+    background-color: rgb(64, 117, 192);
+    /* width: 15vw;
+    height: 5vw; */
+    padding: 0.5em 1em;
+    /* max-width: 20vw; */
+    width: 15vw;
+    min-width: fit-content;
+    font-size: 2em;
+    border-radius: 50px;
+    font-family: 'Londrina Solid', cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.getStarted:hover{
+    box-shadow: 0.05px 0.05px 15px white;
+    border: 0.5px outset solid white;
+    transition: all 0.2s ease;
+    letter-spacing: 0.1em;
+    width: 17vw;
+}
+.text{
+    font-family: 'Fredericka the great', serif;
+    font-size: 5vmin;
+    /* font-size: 2.5em; */
+    font-weight: 500;
+    color: white;
+}
+.b{
+    font-weight :900;
+    color : rgb(185, 157, 126);
+}
+.images{
+    width: 30%;
+}
+.img{
+    /* height: 90%; */
+    width: 100%;
+    margin-top: 5vh;
+    filter : grayscale(90%);
+    border: 6px solid rgb(64, 117, 192);
+}
+@media screen and (max-width: 1120px){
+    .images{
+        width: 40%;
+    }    
+}
+@media screen and (max-width:1029px) {
+    .container1{
+        width: 100%;
+        height: 90vh;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .intro{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: flex-start;
+        text-align: center;
+    }
+    .bottom{
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .getStarted{
+        max-width: none;
+        outline: none;
+    }
+    .getStarted:active{
+        outline: none;
+    }
+    .images{
+        max-width: 60%;
+        max-height: 40vh;
+    }
+    .getStarted:hover{
+        box-shadow: none;
+        outline: none;
+        border: none;
+    }
+}
