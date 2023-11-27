@@ -2,6 +2,7 @@ import { faAngleLeft, faAngleRight, faArrowUp } from '@fortawesome/free-solid-sv
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { forwardRef, useEffect, useState, useRef } from 'react'
 import './Comic.css'
+import ImageWithBubbles from './Image';
 import Spinner from './spinner'
 
 const Comic = forwardRef(({apiResponse, counter, newStory}, comicRef) => {
@@ -18,13 +19,16 @@ const Comic = forwardRef(({apiResponse, counter, newStory}, comicRef) => {
   const handlePrev = () => {
     setIndex(prev => Math.max(0, prev-1))
   }
-  // useEffect(() => {
-  //   if(apiResponse.length !== 0){
-  //     setIsLoading(false)
-  //   }
-  // }, [apiResponse])
+  const [bubblesData, setBubblesData] = useState({}); 
+
+  const updateBubblesData = (imageIndex, updatedBubbles) => {
+      setBubblesData(prevData => ({ ...prevData, [imageIndex]: updatedBubbles }));
+  };
   useEffect(() => {
     setIsLoading(true);
+    if(isLoading){
+      setBubblesData({});
+    }
     if (apiResponse.length !== 0) {
       setIsLoading(false);
     }
@@ -39,7 +43,7 @@ const Comic = forwardRef(({apiResponse, counter, newStory}, comicRef) => {
       if(mouseDownAt.current === "0") return;
       // console.log("mouse moving, location: ", e.clientX)
       let mouseDelta = -parseFloat(mouseDownAt.current) + e.clientX;
-      let maxDelta = window.innerWidth / 2;
+      let maxDelta = window.innerWidth / 3;
       let percentage = (mouseDelta/ maxDelta)*100;
       let nextPercentage = parseFloat(prevPercentage.current) + percentage;
       if(nextPercentage > 100) nextPercentage = 100;
@@ -56,7 +60,7 @@ const Comic = forwardRef(({apiResponse, counter, newStory}, comicRef) => {
       }
       let p = (nextPercentage + 100)*100/200;
       if(trackRef.current !== null){
-        for(const image of trackRef.current.getElementsByClassName("image")){
+        for(const image of trackRef.current.querySelectorAll('.imageContainer img')){
           image.animate({
             objectPosition : `${p}%`
           },{
@@ -88,11 +92,21 @@ const Comic = forwardRef(({apiResponse, counter, newStory}, comicRef) => {
         {isLoading && <Spinner count={counter}/>}
         {!isLoading &&
         <div ref={trackRef} className="comic" id="track">
-            {apiResponse.map((image) => {
+            {apiResponse.map((image, index) => {
               if(image === null){
                 return <img alt="Image could not be generated due to some internal servor Errors" draggable="false" src={image} className="image"/>
               } else {
-                return <img alt="img" draggable="false" src={image} className="image"/>
+                return (
+                  // <div className='comicImgComp'>
+                    <ImageWithBubbles 
+
+                      src={apiResponse[index]} 
+                      imageIndex={index} 
+                      bubblesData={bubblesData} 
+                      updateBubblesData={updateBubblesData}
+                    />
+                  // </div>
+                )
               }
             })} 
         </div>
@@ -113,7 +127,13 @@ const Comic = forwardRef(({apiResponse, counter, newStory}, comicRef) => {
         {!isLoading && 
           <div className='comicMobileContainer'>
             <div className='comicMobileImage'>
-              <img src={apiResponse[index]} alt="img" draggable="false"/>
+              {/* <img src={apiResponse[index]} alt="img" draggable="false"/> */}
+              <ImageWithBubbles 
+                  src={apiResponse[index]} 
+                  imageIndex={index} 
+                  bubblesData={bubblesData} 
+                  updateBubblesData={updateBubblesData}
+              />
             </div>
             <div className='comicMobileIndex'>
               <div className='comicMobilePrev'>

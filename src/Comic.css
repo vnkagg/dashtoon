@@ -40,7 +40,7 @@
     /* box-shadow: 0 0 25px #ff1867; */
     box-shadow: 0 0 35px #1e9bff;
 }
-.comic > img{
+.comicImgComp{
     width: 40vmin;
     min-width: 40vmin;
     height: 56vmin;
@@ -69,14 +69,14 @@
     max-width: 90%;
     max-height: 75%;
     margin: auto;
-    object-fit: cover;
-    object-position: center;
+    /* object-fit: cover;
+    object-position: center; */
     border: 1px solid black;
     box-shadow: 0 0 25px black;
 }
-.comicMobileImage > img {
+/* .comicMobileImage > img {
     width: 100%;
-}
+} */
 .comicMobileIndex{
     display: flex;
     justify-content: center;

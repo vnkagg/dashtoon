@@ -1,0 +1,39 @@
+.imageContainer{
+    position: relative;
+    width: 100%;
+}
+.imageContainer > img{
+    width: 40vmin;
+    min-width: 40vmin;
+    height: 56vmin;
+    max-height: 56vmin;
+    object-fit: cover;
+    object-position: 100%, 50%;
+    user-select: none;
+    box-shadow: 0 0 25px black;
+    border: 1px solid black;
+}
+.bubbleText{
+    color: white;
+    /* border: 2px solid white; */
+    position: absolute;
+    /* border-radius: 2px; */
+    object-fit: contain;
+}
+.textInTheBubble{
+    /* width: 2vw; */
+    max-width: 5vw; /* Maximum width */
+    overflow: none;
+    min-height: 3vh; /* Minimum height */
+    max-height: 6vh; /* Maximum height */
+    font-size: 1em;
+    resize: none;
+    border: 2px solid black;
+    box-shadow: 0 0 2px white;
+    color: black;
+    font-weight: 900;
+    background-color: transparent;
+}
+.textInTheBubble:focus{
+    outline: none;
+}

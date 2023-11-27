@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react'
+import React, { forwardRef, useEffect, useRef, useState } from 'react'
 import * as Scroll from 'react-scroll'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
@@ -42,6 +42,10 @@ const Input = forwardRef(({started, setStarted, setHasSent, handleStartGeneratin
             // window.removeEventListener('resize', handleResize)
         }
     }, [])
+    const promptRef = useRef(null);
+    useEffect(() => {
+        promptRef.current.focus();
+    }, [index])
     const [progress, setProgress] = useState(0);
     const [prompts, setPrompts] = useState(Array(10).fill(""));
     const [currentPrompt, setCurrentPrompt] = useState("");
@@ -104,6 +108,7 @@ const Input = forwardRef(({started, setStarted, setHasSent, handleStartGeneratin
                 <div className='title'>"{titles[index]}"</div>
                 <textarea   
                     value={currentPrompt} 
+                    ref={promptRef}
                     onChange={async(e) => {
                         setCurrentPrompt(e.target.value)
                         handleUpdate(e.target.value);
@@ -111,7 +116,7 @@ const Input = forwardRef(({started, setStarted, setHasSent, handleStartGeneratin
                     }} 
                     className='prompt' 
                     placeholder={ideas[index]} 
-                />
+                    />
                 <div className='generate' onClick={handleGenerate} style = {{cursor : `${index === 9 ? "pointer" : "arrow"}`, opacity : index != 9 ? 0 : 1}}>
                 {/* <div className='generate' onClick={index == 9 ? handleGenerate : null} style = {{cursor : `${index === 9 ? "pointer" : "arrow"}`, opacity : index != 9 ? 0 : 1}}> */}
                     Generate Comic
@@ -128,6 +133,7 @@ const Input = forwardRef(({started, setStarted, setHasSent, handleStartGeneratin
                 <div className='title-mobile'>"{titles[index]}"</div>
                 <textarea   
                     value={currentPrompt} 
+                    ref={promptRef}
                     onChange={async(e) => {
                         setCurrentPrompt(e.target.value)
                         handleUpdate(e.target.value);
