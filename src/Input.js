@@ -80,11 +80,11 @@ const Input = forwardRef(({started, setStarted, setHasSent, handleStartGeneratin
     }
     const handleGenerate = () => {
         const i = prompts.findIndex(prompt => prompt === '');
-        // if (i !== -1) {
-        //     setIndex(i);
-        //     setCurrentPrompt('');
-        //     return;
-        // }
+        if (i !== -1) {
+            setIndex(i);
+            setCurrentPrompt('');
+            return;
+        }
         handleProgress();
         setStarted(false);
         handleStartGenerating([...prompts]);

@@ -52,29 +52,46 @@ function App() {
   //   })
   // }
   const API_request = async(prompts) => {
+
     const responses = await Promise.all(prompts.map(async (prompt) => {
+      // await query({"inputs": prompt}).then((response) => {
+      //   setCounter(prev => prev+1);
+      //   if(response === null) return null;
+      //   return URL.createObjectURL(response);
+      // }).catch((error) => {
+      //   console.log(error);
+      //   document.body.classList.remove('no-scroll');
+      //   document.getElementById("introPage").scrollIntoView({behavior : 'smooth'});
+      // })
       const response = await query({"inputs": prompt});
-      setCounter(prev => prev+1);
+      await setCounter(prev => prev+1);
+      if(response === null) return null;
       return URL.createObjectURL(response);
     }));
+
     setAPIResponse(responses);
-    console.log("from app.js: ", responses.length);
   }  
   const handleStartGenerating = async(prompts) => {
+    setAPIResponse([]);
+    setCounter(0);
     setHasSent(true);
     document.body.classList.remove('no-scroll');
-    comicRef.current.scrollIntoView({behavior : 'smooth'});
     comicRef.current.scrollIntoView({behavior : 'smooth'});
     document.body.classList.add('no-scroll');
     await API_request(prompts);
   }
+  const handleNewStory = () => {
+    document.body.classList.remove('no-scroll');
+    inputRef.current.scrollIntoView({behavior : 'smooth'});
+    document.body.classList.add('no-scroll');
+
+  }
   return (
     <div className="App">
-
       <Nav />
       <Intro started={hasStarted} setStarted={handleGetStarted}/>
       <Input ref={inputRef} handleStartGenerating={handleStartGenerating} started={hasStarted} setStarted={setHasStarted}/>
-      <Comic ref={comicRef} counter={counter} apiResponse={APIResponse}/>
+      <Comic ref={comicRef} newStory={handleNewStory} counter={counter} apiResponse={APIResponse}/>
     </div>
   );
 }

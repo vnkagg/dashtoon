@@ -7,7 +7,7 @@ import Nav from './Nav'
 function Intro({started, setStarted}) {
   return (
     <>
-    <div className='container1'>
+    <div className='container1' id="introPage">
         <div className='intro'>
             <div className='text'>
                 <h1 className='t1'>   

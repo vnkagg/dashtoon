@@ -4,12 +4,13 @@ import React, { forwardRef, useEffect, useState, useRef } from 'react'
 import './Comic.css'
 import Spinner from './spinner'
 
-const Comic = forwardRef(({apiResponse, counter}, comicRef) => {
+const Comic = forwardRef(({apiResponse, counter, newStory}, comicRef) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600)
   const mouseDownAt = useRef(0);
   const prevPercentage = useRef(0);
   const Percentage = useRef(0);
+  const trackRef = useRef(null);
   const [index, setIndex] = useState(0);
   const handleNext = () => {
     setIndex(prev => Math.min(prev+1, 9))
@@ -17,8 +18,14 @@ const Comic = forwardRef(({apiResponse, counter}, comicRef) => {
   const handlePrev = () => {
     setIndex(prev => Math.max(0, prev-1))
   }
+  // useEffect(() => {
+  //   if(apiResponse.length !== 0){
+  //     setIsLoading(false)
+  //   }
+  // }, [apiResponse])
   useEffect(() => {
-    if (counter === 10) {
+    setIsLoading(true);
+    if (apiResponse.length !== 0) {
       setIsLoading(false);
     }
     const handleResize = () => {
@@ -30,37 +37,39 @@ const Comic = forwardRef(({apiResponse, counter}, comicRef) => {
     }
     const handleMouseMove = e => {
       if(mouseDownAt.current === "0") return;
-      console.log("mouse moving, location: ", e.clientX)
+      // console.log("mouse moving, location: ", e.clientX)
       let mouseDelta = -parseFloat(mouseDownAt.current) + e.clientX;
       let maxDelta = window.innerWidth / 2;
       let percentage = (mouseDelta/ maxDelta)*100;
       let nextPercentage = parseFloat(prevPercentage.current) + percentage;
-      if(nextPercentage > 70) nextPercentage = 70;
-      if(nextPercentage < -70) nextPercentage = -70;
+      if(nextPercentage > 100) nextPercentage = 100;
+      if(nextPercentage < -100) nextPercentage = -100;
       Percentage.current = nextPercentage;
-      if(!isMobile && !isLoading){
-        comicRef.current.animate({
-          transform : `translate(${nextPercentage}%)`
-        }, {
-          duration : 1200, fill: "forwards"
-        });
+      if(!isMobile){
+        if(trackRef.current !== null){
+          trackRef.current.animate({
+            transform : `translate(${nextPercentage}%)`
+          }, {
+            duration : 1200, fill: "forwards"
+          });
+        }
       }
-      let p = (nextPercentage + 70)*100/140;
-      for(const image of comicRef.current.getElementsByClassName("image")){
-
-        image.animate({
+      let p = (nextPercentage + 100)*100/200;
+      if(trackRef.current !== null){
+        for(const image of trackRef.current.getElementsByClassName("image")){
+          image.animate({
             objectPosition : `${p}%`
-        },{
+          },{
             duration: 1200, fill: "forwards"
-        });
+          });
+        }
       }
     }
     const handleMouseUp = e => {
         mouseDownAt.current = '0';
-        console.log("mouse release aT:", e.clientX)
+        // console.log("mouse release aT:", e.clientX)
         prevPercentage.current = Percentage.current;
     }
-
     window.addEventListener("mousedown", handleMouseDown)
     window.addEventListener("mousemove", handleMouseMove)
     window.addEventListener("mouseup", handleMouseUp)
@@ -71,17 +80,30 @@ const Comic = forwardRef(({apiResponse, counter}, comicRef) => {
       window.removeEventListener("mousemove", handleMouseMove)
       window.removeEventListener("mouseup", handleMouseUp)
     }
-  }, [counter, comicRef]);
+  }, [counter, comicRef, apiResponse]);
 
   if(!isMobile){
     return (
-      <div ref={comicRef} className="comic" id="track">
+      <div ref ={comicRef} className='comicPage'>
         {isLoading && <Spinner count={counter}/>}
         {!isLoading &&
-          apiResponse.map((image) => {
-            return <img alt="img" draggable="false" src={image} className="image"/>
-          }) 
+        <div ref={trackRef} className="comic" id="track">
+            {apiResponse.map((image) => {
+              if(image === null){
+                return <img alt="Image could not be generated due to some internal servor Errors" draggable="false" src={image} className="image"/>
+              } else {
+                return <img alt="img" draggable="false" src={image} className="image"/>
+              }
+            })} 
+        </div>
         }
+      {!isLoading && 
+      <div className='comicPageBottomArea'>
+        <div className='newButton' onClick={newStory}>
+          Create a New Story
+        </div>
+      </div>
+      }
       </div>
     )
   } else {
@@ -99,6 +121,11 @@ const Comic = forwardRef(({apiResponse, counter}, comicRef) => {
               </div>
               <div className='comicMobileNext'>
                 <FontAwesomeIcon icon={faAngleRight} onClick={handleNext}/>
+              </div>
+            </div>
+            <div className='mobileNewRow'>
+              <div className='mobileNewGenerateButton' onClick={newStory}>
+                New Story
               </div>
             </div>
           </div>
