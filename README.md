@@ -1,70 +1,21 @@
-# Getting Started with Create React App
+(*) The App is Responsive for Desktop and Mobile Screens only, Tablet Layouts have not been incorporated as of now.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+(*) On mobile devices, do not switch between portrait and landscape modes once the page has been landed. Render the page directly in the desired mode, i.e Either keep the phone in landscape mode before and after loading the page or keep the phone in portrait mode before and after loading the page
 
-## Available Scripts
+(*) The web app was designed in the form of a wizard for generating AI responses, and thus an option to proceed or go back is provided only at the steps when it makes sense. i.e you cant go to the landscape once you get started. but you can go back to re-enter the prompts once you have generated some AI responses from your existing prompts.
 
-In the project directory, you can run:
+(*) The app builds a 10-panel comic strip. That is, you need to enter 10 separate prompts corresponding to each an AI visualisation will be built. If you try to generate a response by entering less than 10 prompts, the app will redirect you to the prompt index you skipped.
 
-### `npm start`
+(*) The option to generate the responses will be available only when you are visiting the 10th prompt dialogue. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+(*) The response time for one API call can be on average 20-30 seconds. For 10 prompts, you can expect an ETA for 2-3 minutes.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+(*) You should treat the desktop app like a mobile screen to navigate between the comic strip generated on the desktop app. i.e. you should click somewhere, preferrably above or below the comic strip (avoiding on the comic strip, as it can sometimes lead to drag events and less smooth behaviour) and drag the cursor to the direction you want to scroll the strip.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[BONUS] 
+(*) There is an option to add text boxes on the comic strip on both the mobile and desktop apps.
+    [Desktop] • The desktop version gives a more comic strip feel as it will behave like a one continuous strip with text boxes on it.
+              • On clicking and empty text box, you will be able to add content in it.
+              • Clicking a Text Box with content will delete the text box
+    [Mobile]  • On mobile, you have to index using prev and next buttons provided to iterate between the comic pages. 
+              • You can simply click on the position    where you want to add a text bubble and a box will appear.
