@@ -1,5 +1,5 @@
 .App {
-  width: 100vw;
+  min-width: 100vw;
 }
 .no-scroll{
   overflow: hidden;

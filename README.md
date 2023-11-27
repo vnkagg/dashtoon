@@ -15,7 +15,7 @@
 [BONUS] 
 (*) There is an option to add text boxes on the comic strip on both the mobile and desktop apps.
     [Desktop] • The desktop version gives a more comic strip feel as it will behave like a one continuous strip with text boxes on it.
-              • On clicking and empty text box, you will be able to add content in it.
+              • On clicking at any position (on the image), a text box will appear (extending towards the right) where you can immediately start typing.
               • Clicking a Text Box with content will delete the text box
     [Mobile]  • On mobile, you have to index using prev and next buttons provided to iterate between the comic pages. 
               • You can simply click on the position    where you want to add a text bubble and a box will appear.

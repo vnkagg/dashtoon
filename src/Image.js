@@ -6,7 +6,7 @@ function ImageWithBubbles({ src, imageIndex, bubblesData, updateBubblesData }) {
         const rect = e.target.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        const width = Math.min(5, rect.right - x);
+        const width = Math.min(8, rect.right - x);
         const updatedBubbles = [...(bubblesData[imageIndex] || []), { x, y, text: "", width : width }];
         updateBubblesData(imageIndex, updatedBubbles);
     };
@@ -37,11 +37,13 @@ function ImageWithBubbles({ src, imageIndex, bubblesData, updateBubblesData }) {
                     style={{ top: bubble.y, left: bubble.x }}
                 >
                     <textarea 
+                        autoFocus
                         className='textInTheBubble'
                         value={bubble.text} 
                         style={{width: `${bubble.width}vw`}}
                         onClick={e => handleTextAreaClick(bubble.text, index, e)}
                         onChange={(e) => updateBubble(index, e.target.value)} 
+                        placeholder="Start typing to add Text"
                     />
                 </div>
             ))}

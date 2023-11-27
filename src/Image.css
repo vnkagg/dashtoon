@@ -6,7 +6,7 @@
     width: 40vmin;
     min-width: 40vmin;
     height: 56vmin;
-    max-height: 56vmin;
+    min-height: 56vmin;
     object-fit: cover;
     object-position: 100%, 50%;
     user-select: none;
@@ -22,17 +22,17 @@
 }
 .textInTheBubble{
     /* width: 2vw; */
-    max-width: 5vw; /* Maximum width */
-    overflow: none;
+    width: 40vw; /* Maximum width */
+    /* overflow: none; */
     min-height: 3vh; /* Minimum height */
     max-height: 6vh; /* Maximum height */
     font-size: 1em;
     resize: none;
     border: 2px solid black;
     box-shadow: 0 0 2px white;
-    color: black;
+    color: rgb(255, 255, 255);
     font-weight: 900;
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.264);
 }
 .textInTheBubble:focus{
     outline: none;
